@@ -10,9 +10,9 @@ void reverseFileContents(const std::string& sourcePath, const std::string& desti
 int main() {
 	// Define the file paths
 	std::string originalFilePath = "C:\\Users\\Jonathan\\Desktop\\CSC450_CT5_mod5.txt";
-	std::string reverseFilePath = "C:\\Users\\Jonathan\\Dekstop\\CSC450-mod5-reverse.txt";
+	std::string reverseFilePath = "C:\\Users\\Jonathan\\Desktop\\CSC450-mod5-reverse.txt";
 
-	std::cout << "\n--- Step 1: Appending USer Input ---" << std::endl;
+	std::cout << "\n--- Step 1: Appending User Input ---" << std::endl;
 	appendToFile(originalFilePath);
 
 	std::cout << "\n--- Step 2: Reversing File Contents ---" << std::endl;
@@ -24,20 +24,23 @@ int main() {
 }
 
 /***
-Obtaoins text input fro mthe user and appends it to the source file
+Obtains text input fro mthe user and appends it to the source file
 */
 void appendToFile(const std::string& filePath) {
 	// Open the file using std::ios::app to safely open without erasing data
 	std::ofstream outFile(filePath, std::ios::app);
 
 	if (!outFile) {
-		std::cerr << "Error: Could not open the original file for writing at " << filePath << std:endl;
+		std::cerr << "Error: Could not open the original file for writing at " << filePath << std::endl;
 		return;
 	}
 
 	std::string userInput;
 	std::cout << "Enter the text you want to append to the file: ";
 	std::getline(std::cin, userInput);
+
+	// Append the new user input alonf with a newline character
+	outFile << userInput << std::endl;
 
 	outFile.close();
 	std::cout << "Successfully appended your text to the file." << std::endl;
@@ -60,7 +63,7 @@ void reverseFileContents(const std::string& sourcePath, const std::string& desti
 	inFile.close();
 
 	if (fileContents.empty()) {
-		std::cout << "The source file is empty. Nothign to reverse." << std::endl;
+		std::cout << "The source file is empty. Nothing to reverse." << std::endl;
 		return;
 	}
 
@@ -77,5 +80,5 @@ void reverseFileContents(const std::string& sourcePath, const std::string& desti
 	outFile << fileContents;
 	outFile.close();
 
-	std::cout << "Successfully reveresed all characters and saved to " << destinationPath << std::endl;
+	std::cout << "Successfully reversed all characters and saved to " << destinationPath << std::endl;
 }
